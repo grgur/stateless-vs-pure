@@ -1,0 +1,11 @@
+{
+  "plugins": [ "inferno", "syntax-jsx" ],
+  "env": {
+    "development": {
+      "plugins": [ "transform-es2015-modules-commonjs" ]
+    },
+    "production": {
+      "presets": [ "es2015"]
+    }
+  }
+}
