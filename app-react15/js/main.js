@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createElement, Component } from 'react';
 import {render} from 'react-dom';
 
 let iterations;
@@ -6,36 +6,45 @@ let prevTime;
 let currentCmp;
 let max = 100000;
 
-class StatefulUpdates extends React.Component {
+function workHard() {
+  // Don't do anything right now.
+  // Pure component will remain fast because it never updates.
+  // This is unfair advantage over the other two component types.
+  return;
+  let i = 10;
+  while (i > 0) {
+    JSON.parse(JSON.stringify({foo: --i}));
+  }
+}
+
+class Stateful extends Component {
   render () {
+    workHard();
     return <div>Hello Cmp1: stateful</div>;
   }
 }
 
-class StatefulNoUpdate extends React.Component {
+class Pure extends Component {
   shouldComponentUpdate() {
     return false;
   }
   
   render () {
-    return <div>Hello Cmp2: stateful, no updates</div>;
+    workHard();
+    return <div>Hello Cmp2: stateful, pure, no updates</div>;
   }
 }
 
 function Stateless() {
+  workHard();
   return <div>Hello Cmp3: stateless</div>;
 }
 
 function* cmpCycle(components){
-  let index = 0;
-  const len = components.length;
-  while(index < len) {
-    yield components[index];
-    index++;
-  }
+  yield* components;
 }
 
-const components = [Stateless, StatefulUpdates, StatefulNoUpdate];
+const components = [Stateless, Stateful, Pure];
 const cmpSwitcher = cmpCycle(components);
 
 function nextComponent() {
@@ -67,10 +76,10 @@ function iterate(cmp) {
   setTimeout(nextComponent, 500);
 }
 
-class Main extends React.Component {
+class Main extends Component {
   render() {
     const { currentCmp, iteration } = this.props;
-    return <main>{iteration}{React.createElement(currentCmp)}</main>;
+    return createElement(currentCmp, { iteration });
   }
 }
 
