@@ -1,5 +1,10 @@
 /* global __dirname */
 
+/**
+ * Axel Rauschmayer's react startr kit was used here to get me started quickly
+ * https://github.com/rauschma/react-starter-project
+ * I fine-tuned a few settings, but credit goes to Dr Rauschmayer.
+ */
 var path = require('path');
 var webpack = require('webpack');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
