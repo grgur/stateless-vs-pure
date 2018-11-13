@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "webpack": "webpack",
-    "start": "webpack-dev-server --inline --port 8081"
+    "start": "webpack-dev-server --inline --port 8082"
   },
   "author": "Grgur Grisogono (moduscreate.com)",
   "license": "MIT",
