@@ -9,7 +9,7 @@ npm i
 npm start
 ```
 
-React 14 uses `localhost:8080` and React 15 project uses `localhost:8081` so you can run them simultaneously. 
+React 14 uses `localhost:8080`, React 15 project uses `localhost:8081` and  React 16 project uses `localhost:8082` so you can run them simultaneously. 
 
 Keep the console open to see measured times. 
 
